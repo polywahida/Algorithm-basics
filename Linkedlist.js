@@ -127,31 +127,67 @@ let previous = this.getAt(index - 1) || this.getAt
 const node = new Node(data, previous.next); 
 previous.next = node;
 
+  [Symbol.iterator]();{ 
+   let node = this.head; 
+    while(node) {
+    yield node; 
+    node =node.next;
+  }
+}
 
 
-let linkedList = new LinkedList();
 
-linkedList.insertFirst('Blue1'); linkedList.insertFirst('Green2');
+function midpoint(list) {
 
-linkedList.insertFirst('Red3');
+  let slow = list.getFirst(); let fast = list.getFirst();
+  
+  while(fast.next && fast.next.next) { slow = slow.next; fast = fast.next.next;
+  
+  return slow;
+  }
+}
+function circular(list) {
 
-// linkedList.removeFirst();
+  let slow= list.getFirst();
+  
+  let fast= list.getFirst();
+  
+  while(fast.next && fast.next.next) { slow= slow.next;
+  
+  fast = fast.next.next;
+  
+  }
+  
+  if(slow == fast) return true; I
+  
+  return false;
+  
+  }
 
-// linkedList.removeLast();
 
-linkedList.insertLast('Pink5');
 
-linkedList.insertAt('Black', 1);
+  let linkedList = new LinkedList(); linkedList.insertFirst('Blue1');
 
-// linkedList.removeAt(1); // console.log(linkedList.nodesize());
-
-// console.log(linkedList.getFirst());
-
-// console.log(linkedList.getLast());
-
-// linkedList.clear();
-
-console.log(linkedList);
-
+  linkedList.insertFirst('Green2');
+  
+  linkedList.insertFirst('Red3');
+  
+  // linkedList.removeFirst(); // linkedList.removeLast();
+  
+  linkedList.insertLast('Pink5');
+  
+  linkedList.insertAt('Black', 2); // linkedList.removeAt(1);
+  
+  // console.log(linkedList.nodeSize())
+  
+  ;
+  
+  // console.log(linkedList.getFirst());
+  
+  // console.log(linkedList.getLast()); // linkedList.clear();
+  
+  console.log(circular (linkedList));
+  
+  for(let node of linkedList) console.log(node);
 }
     }
